@@ -1,18 +1,34 @@
-import NotificationButton from '../NotificationButton';
 import './styles.css';
+import 'react-datepicker/dist/react-datepicker.css';
+
+import ptBR from 'date-fns/locale/pt-BR';
+import DatePicker, { registerLocale } from 'react-datepicker';
+
+import NotificationButton from '../NotificationButton';
 
 function SalesCard() {
+    registerLocale('pt-BR', ptBR);
+
     return (
         <div className="dsmeta-card">
             <h2 className="dsmeta-sales-title">Vendas</h2>
 
             <div>
                 <div className="dsmeta-form-control-container">
-                    <input className="dsmeta-form-control" type="text" />
+                    <DatePicker
+                        className="dsmeta-form-control"
+                        locale="pt-BR"
+                        selected={new Date()}
+                        onChange={(date: Date) => { }}
+                        dateFormat="dd/MM/yyyy" />
                 </div>
 
                 <div className="dsmeta-form-control-container">
-                    <input className="dsmeta-form-control" type="text" />
+                    <DatePicker
+                        className="dsmeta-form-control"
+                        selected={new Date()}
+                        onChange={(date: Date) => { }}
+                        dateFormat="dd/MM/yyyy" />
                 </div>
             </div>
 
