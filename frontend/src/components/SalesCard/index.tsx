@@ -8,7 +8,7 @@ import DatePicker, { registerLocale } from 'react-datepicker';
 import NotificationButton from '../NotificationButton';
 import axios from 'axios';
 import { BASE_URL } from '../../utils/request';
-import { Sale } from '../../models/sales';
+import { Sale } from '../../models/sale';
 
 registerLocale('pt-BR', ptBR);
 
@@ -25,8 +25,6 @@ function SalesCard() {
 
         const dmin = minDate.toISOString().slice(0, 10);
         const dmax = maxDate.toISOString().slice(0, 10);
-
-        console.log(`Entre: ${dmin} e ${dmax}`)
 
         axios.get(`${BASE_URL}/sales?minDate=${dmin}&maxDate=${dmax}`)
             .then(response => {
@@ -84,7 +82,7 @@ function SalesCard() {
                                     <td>R$ {sale.amount.toFixed(2)}</td>
                                     <td>
                                         <div className="dsmeta-red-btn-container">
-                                            <NotificationButton />
+                                            <NotificationButton saleId={sale.id} />
                                         </div>
                                     </td>
                                 </tr>
