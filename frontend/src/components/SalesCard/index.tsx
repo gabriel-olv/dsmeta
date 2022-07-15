@@ -12,6 +12,16 @@ import { Sale } from '../../models/sale';
 
 registerLocale('pt-BR', ptBR);
 
+function toBrFormatDate(dateString: string): string {
+    const dateArray = dateString.split("-");
+
+    const dia = dateArray[2];
+    const mes = dateArray[1];
+    const ano = dateArray[0];
+
+    return `${dia}/${mes}/${ano}`;
+}
+
 function SalesCard() {
     const min = new Date(new Date().setDate(new Date().getDate() - 30));
     const max = new Date();
@@ -75,7 +85,7 @@ function SalesCard() {
                             return (
                                 <tr key={sale.id}>
                                     <td className="show992">#{sale.id}</td>
-                                    <td className="show576">{new Date(sale.date).toLocaleDateString()}</td>
+                                    <td className="show576">{toBrFormatDate(sale.date)}</td>
                                     <td>{sale.sellerName}</td>
                                     <td className="show992">{sale.visited}</td>
                                     <td className="show992">{sale.deals}</td>
